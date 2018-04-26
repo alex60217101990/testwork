@@ -1,0 +1,31 @@
+
+<h1>Main Page</h1>
+<button ></button>
+
+<mat-card class="example-card">
+    <mat-card-content>
+
+        <mat-form-field>
+        <textarea matInput placeholder="Message" matTextareaAutosize matAutosizeMinRows="5"
+            matAutosizeMaxRows="10"></textarea>
+        </mat-form-field>
+
+    </mat-card-content>
+        <mat-card-actions>
+        <button (click)="start()" mat-button>send</button>
+    </mat-card-actions>
+</mat-card>
+
+
+
+<mat-card class="example-card">
+    <mat-card-content>
+        <p>
+           {{test_mess}}
+        </p>
+    </mat-card-content>
+</mat-card>
+
+
+
+

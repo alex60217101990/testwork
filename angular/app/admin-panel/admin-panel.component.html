@@ -1,0 +1,205 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-xs-12" id="left" style="/*background: #8eb4cb;*/ height: 350px; position:relative;">
+      <div style="max-height:100%; overflow:auto; padding-bottom: 20px; padding-top: 20px">
+      <mat-card style="width: 100%; background: #C5CAE9;">
+        <mat-card-content>
+          <h2 class="example-h2" class="textH2">User permissions</h2>
+          <section class="example-section">
+            <div *ngIf="PermissionsData.length > 0; then var1 else var2"></div>
+            <ng-template #var1>
+            <mat-list style="width: 100%;">
+                <!--  dnd-droppable (onDropSuccess)="transferDataSuccess($event)" -->
+              <h3 mat-subheader class="textH5">Permissions</h3>
+              <div *ngFor="let permission of PermissionsData; let count = index;">
+                <mat-list-item dnd-draggable [dragEnabled]="checked1" [dragData]="permission">
+                  <mat-checkbox color="primary" [hidden]="CheckedPermissionsArrHidden[count]" class="example-margin"
+                                [(ngModel)]="CheckedPermissionsArr[count]">
+                  </mat-checkbox>
+                  <mat-icon mat-list-icon style="color: #2196F3;">fingerprint</mat-icon>
+                  <span class="example-spacer"></span>
+                  <h4 mat-line class="textH4">{{ ucFirst(permission.name) }}</h4>
+                </mat-list-item>
+              <mat-divider [hidden]="(count+1)==PermissionsData.length"></mat-divider>
+              </div>
+            </mat-list>
+              </ng-template>
+              <!-- [hidden]="!PermissionsData.length > 0" -->
+              <ng-template #var2>
+                <h1 class="textH2" style="text-align: center;">
+                  Permissions absent.
+                </h1>
+              </ng-template>
+          </section>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="result" style="width: 100%; background: #C5CAE9;">
+        <mat-card-content>
+          <h2 class="example-h2" class="textH2">Activate Drag'n'Drop.</h2>
+          <section class="example-section">
+            <mat-slide-toggle
+                    (change)="checked1Toogle()"
+                    class="example-margin"
+                    color="primary"
+                    [checked]="checked1">
+              Toogle
+            </mat-slide-toggle>
+              <div [hidden]="!checked1">
+                  <mat-icon class="iconsize-35 example-spacer"
+                            color="primary"
+                            matTooltip="Delete selected permissions." matTooltipPosition="right"
+                            dnd-droppable (onDropSuccess)="transferPermissionDelete($event)"
+                  >delete</mat-icon>
+              </div>
+            <div [hidden]="checked1">
+              <button mat-icon-button color="primary">
+                <mat-icon aria-label="Example icon-button with a heart icon"
+                          matTooltip="Open permissions for access." matTooltipPosition="below"
+                          (click)="CheckedHidden1Toogle()"
+                          [ngClass]="{notActive:!(PermissionsData.length>0)}">touch_app</mat-icon>
+              </button>
+              <button mat-icon-button color="primary">
+                <mat-icon aria-label="Example icon-button with a heart icon"
+                          matTooltip="Select all permissions." matTooltipPosition="below"
+                          (click)="AllPermissionsSelectToogle()"
+                          [ngClass]="{notActive:!(PermissionsData.length>0)}">select_all</mat-icon>
+              </button>
+              <button mat-icon-button color="primary">
+                <mat-icon aria-label="Example icon-button with a heart icon"
+                          matTooltip="Assign a permission to the user." matTooltipPosition="below"
+                          [ngClass]="{notActive:!(PermissionsData.length>0)}">person_add</mat-icon>
+              </button>
+            </div>
+          </section>
+        </mat-card-content>
+      </mat-card>
+      </div>
+    </div>
+   <!-- *********************************************************************** -->
+    <div class="col-sm-6 col-xs-12" id="right" style="/*background: #8eb4cb;*/ height: 350px; position:relative;">
+      <div style="max-height:100%; max-width: 100%; overflow:auto; padding-bottom: 20px; padding-top: 20px">
+        <div slimScroll>
+        <mat-card style="width: 100%; background: #FFF59D;">
+          <mat-card-content>
+            <h2 class="example-h2" class="textH2Y">User roles</h2>
+            <section class="example-section">
+              <div *ngIf="RolesData.length > 0; then var5 else var7"></div>
+              <ng-template #var5>
+              <mat-list style="width: 100%;">
+                <h3 mat-subheader class="textH5Y">Roles list</h3>
+                <div *ngFor="let role of RolesData; let counter = index">
+                  <mat-list-item dnd-draggable [dragEnabled]="checked2" [dragData]="role">
+                    <mat-checkbox color="warn" [hidden]="CheckedRolesArrHidden[counter]" class="example-margin"
+                                  [(ngModel)]="CheckedRolesArr[counter]">
+                    </mat-checkbox>
+                    <mat-icon mat-list-icon style="color: #F57F17;">supervisor_account</mat-icon>
+                    <span class="example-spacer"></span>
+                    <h4 mat-line class="textH4Y">{{ ucFirst(role.name) }}</h4>
+                  </mat-list-item>
+                  <mat-divider [hidden]="(counter+1)==RolesData.length"></mat-divider>
+                </div>
+              </mat-list>
+              </ng-template>
+              <ng-template #var7>
+                <h1 class="textH2Y" style="text-align: center;">
+                  Roles absent.
+                </h1>
+              </ng-template>
+            </section>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="result" style="width: 100%; background: #FFF59D;">
+          <mat-card-content>
+            <h2 class="example-h2" class="textH2Y">Activate Drag'n'Drop.</h2>
+            <section class="example-section">
+              <mat-slide-toggle
+                      (change)="checked2Toogle()"
+                      class="example-margin"
+                      color="warn"
+                      [checked]="checked2">
+                Toogle
+              </mat-slide-toggle>
+              <div [hidden]="!checked2">
+                <mat-icon class="iconsize-35 example-spacer"
+                          color="warn"
+                          matTooltip="Delete selected roles." matTooltipPosition="below"
+                          dnd-droppable (onDropSuccess)="transferRoleDelete($event)"
+                >delete</mat-icon>
+                <mat-icon class="iconsize-35 example-spacer"
+                          color="warn"
+                          matTooltip="Add selected roles." matTooltipPosition="below"
+                          (click)="toogleInputRole()">fiber_new</mat-icon>
+               <!-- <mat-icon class="iconsize-35 example-spacer"
+                          color="warn"
+                          matTooltip="Add selected roles." matTooltipPosition="right"
+                          (click)="BackupRoles()">backup</mat-icon>-->
+              </div>
+              <div [hidden]="checked2">
+                <button mat-icon-button color="warn">
+                  <mat-icon aria-label="Example icon-button with a heart icon"
+                            matTooltip="Open roles for access." matTooltipPosition="below"
+                            (click)="CheckedHiddenToogle()" [ngClass]="{notActive:!(RolesData.length>0)}">touch_app</mat-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                  <mat-icon aria-label="Example icon-button with a heart icon"
+                            matTooltip="Select all roles." matTooltipPosition="below"
+                            (click)="AllRolesSelectToogle()" [ngClass]="{notActive:!(RolesData.length>0)}"
+                  >select_all</mat-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                  <mat-icon aria-label="Example icon-button with a heart icon"
+                            matTooltip="Assign a role to the user." matTooltipPosition="below"
+                            [ngClass]="{notActive:!(RolesData.length>0)}">person_add</mat-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                  <mat-icon aria-label="Example icon-button with a heart icon"
+                            matTooltip="Add a role to the user." matTooltipPosition="below"
+                            (click)="toogleInputRole()">fiber_new</mat-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                  <mat-icon aria-label="Example icon-button with a heart icon"
+                            matTooltip="Add a role to the user on server." matTooltipPosition="right"
+                            (click)="BackupRoles()">backup</mat-icon>
+                </button>
+              </div>
+            </section>
+            <div *ngIf="inputField; then var8"></div>
+            <ng-template #var8>
+              <section class="example-section">
+                <mat-form-field color="warn" class="example-full-width">
+                  <input type="text" color="warn"  [(ngModel)]="roleInput"
+                         matInput placeholder="Add role..." style="color: chocolate;">
+                  <mat-icon matSuffix>autorenew</mat-icon>
+                </mat-form-field>
+                <button mat-icon-button color="warn" style="margin: 0;">
+                  <mat-icon aria-label="Example icon-button with a heart icon"
+                            matTooltip="Save." matTooltipPosition="below"
+                            (click)="saveRole()">save</mat-icon>
+                </button>
+              </section>
+            </ng-template>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    </div>
+    <!-- *********************************************************************** -->
+    <div class="col-sm-12 col-xs-12" id="center" style="height: 350px; position:relative;">
+      <div style="max-height:100%; max-width: 100%; overflow:auto; padding-bottom: 20px; padding-top: 20px">
+        <mat-card style="width: 100%; background: #FFCDD2;">
+          <mat-card-content>
+            <h2 class="example-h2" class="textH2G" style="text-align: center;">User  Data:</h2>
+            <img src="http://www.torjoman.org/image_url/b5cdab07.png" class="avatar"/>
+            <!--<google-chart class="chart1" [data]="pieChartData" dnd-droppable (onDropSuccess)="AddNewDataToUser($event)" (chartSelect)="SelectChart($event)" #table></google-chart>-->
+
+
+
+
+
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

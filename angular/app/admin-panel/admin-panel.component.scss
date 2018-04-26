@@ -1,0 +1,116 @@
+.avatar{
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  z-index: 100000000;
+  width: 20%;
+  height: 50%;
+  animation-name: floating;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  //box-shadow: 0 5px 5px -5px rgba(0,0,0,0.19);
+  -webkit-box-shadow: 0px 57px 84px -41px rgba(0,0,0,0.23);
+  -moz-box-shadow: 0px 57px 84px -41px rgba(0,0,0,0.23);
+  box-shadow: 0px 57px 84px -41px rgba(0,0,0,0.19);
+}
+
+.example-spacer {
+  margin: 0 10px;
+}
+.example-spacer:hover {
+  cursor: pointer;
+}
+@for $i from 1 through 300{
+  .iconsize-#{$i}{
+    font-size: $i+unquote('px') !important;
+    height: $i+unquote('px') !important;
+    width: $i+unquote('px') !important;
+  };
+}
+.chart1{
+  display: block;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.example-full-width {
+  width: 80%;
+  margin: auto;
+}
+
+
+.notActive{
+  opacity: 0.5;
+  cursor: default;
+}
+
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px;
+}
+.example-margin {
+  margin: 0 5px;
+}
+
+.example-margin {
+  margin: 10px;
+}
+
+.textH2{
+  font-size: 2vw;
+  color: #1565C0;
+}
+.textH4{
+  font-size: 1.5vw;
+  color: #2196F3;
+}
+.textH5{
+  font-size: 1.1vw;
+}
+
+* {outline:none!important;}
+
+
+
+
+.textH2Y{
+  font-size: 2vw;
+  color: #F57F17;
+}
+.textH4Y{
+  font-size: 1.5vw;
+  color: #F9A825;
+}
+.textH5Y{
+  font-size: 1.1vw;
+}
+
+
+
+.textH2G{
+  font-size: 2vw;
+  color: #C51162;
+}
+.textH4G{
+  font-size: 1.5vw;
+  color: #AD1457;
+}
+.textH5G{
+  font-size: 1.1vw;
+}
+
+
+
+  @keyframes floating {
+    from { transform: translate(0,  0px); }
+    65%  { transform: translate(0, 15px); }
+    to   { transform: translate(0, -0px); }
+  }

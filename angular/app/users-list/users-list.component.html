@@ -1,0 +1,36 @@
+<div class="all">
+<div class="example-container" style="margin: auto">
+  <mat-form-field style="width: 40%">
+    <input matInput placeholder="Search field..." type="search" [(ngModel)]="search">
+    <mat-icon matSuffix (click)="Search()">search</mat-icon>
+  </mat-form-field>
+</div>
+
+
+<table matSort class="table" cellspacing="0px" cellpadding="0px">
+  <thead class="thead">
+    <tr>
+      <th mat-sort-header="id" class="th" (click)="sort('id')">User id</th>
+      <th mat-sort-header="name" class="th" (click)="sort('name')">User name</th>
+      <th mat-sort-header="email" class="th" (click)="sort('email')">Email</th>
+      <th mat-sort-header="update" class="th" (click)="sort('update')">Update at</th>
+      <th mat-sort-header="role_list" class="th" (click)="sort('role_list')">Roles</th>
+      <th mat-sort-header="permission_list" class="th" (click)="sort('permission_list')">Permissions</th>
+    </tr>
+  </thead>
+<tbody>
+    <tr *ngFor="let user of Users | orderBy: key : reverse | filter:search | paginate: { itemsPerPage: 10, currentPage: p }; let counter = index;"
+        (click)="goToItem(counter+1)">
+      <td>{{user.id}}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.update }}</td>
+      <!-- | date:"dd/MM/yyyy" -->
+      <td><ul *ngFor="let role of user.role_list"><li>{{role.name}},</li></ul></td>
+      <td><ul *ngFor="let role of user.permission_list"><li>{{role.name}},</li></ul></td>
+    </tr>
+</tbody>
+  </table>
+  <pagination-controls class="paginate" (pageChange)="p = $event"></pagination-controls>
+  <router-outlet></router-outlet>
+</div>

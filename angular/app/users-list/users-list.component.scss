@@ -1,0 +1,66 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+}
+.thead{
+  display: flex;           /* establish flex container */
+  flex-direction: column;  /* make main axis vertical */
+  justify-content: center; /* center items vertically, in this case */
+  align-items: center;
+}
+
+.table {
+  overflow: auto;
+  max-height: 500px;
+  margin: auto;
+  align-items: center;
+  width: 96%;
+  text-align: center;
+  border: 1px solid silver;
+}
+
+.th {
+  color: rgba(255,255,255,0.5);
+  font-size: 2vw;
+  text-align: center;
+  align-items: center;
+  background: #1565C0;
+  padding-left: 10px; padding-right: 10px;
+  border-right: 1px solid silver;
+}
+th{
+  font-size: 2vw;
+  text-align: center;
+  padding-left: 10px; padding-right: 10px;
+  border-bottom: 1px solid silver;
+  vertical-align: center;
+}
+td{
+  font-size: 1.5vw;
+  text-align: center;
+  color: #636b6f;
+  padding-left: 10px; padding-right: 10px; padding-bottom: 10px;
+  border-bottom: 1px solid silver;
+  vertical-align: center;
+}
+.mat-sort-header-container {
+  align-items : center;
+}
+tr:hover{
+  background: #C0C0C0;
+  transition: 1s;
+  cursor: pointer;
+}
+.mat-sort-header-container {
+  align-items : center;
+}
+.paginate{
+  color: #636b6f;
+  font-size: 2vw;
+  margin: auto;
+}
+li{
+  list-style-type: none;
+}
